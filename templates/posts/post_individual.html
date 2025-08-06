@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block contenido %}
+    <main class="hoc container clear">
+        <h2>{{ post.titulo }}</h2>
+        <p>{{ post.subtitulo }}</p>
+        <p>Categoría: {{ post.categoria }}</p>
+
+        <img src="{{ post.imagen.url }}" alt="Imagen del post">
+
+        <p>{{ post.texto }}</p>
+    </main>
+{% endblock contenido %}

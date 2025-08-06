@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="es-ar">
+<head>
+    <title>{% block title %}Spourmo{% endblock title %}</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link href="{% static 'layout/styles/layout.css' %}" rel="stylesheet" type="text/css" media="all">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body id="top">
+    <div class="wrapper row0">
+      <div id="topbar" class="hoc clear">
+        <div class="fl_left">
+          <ul class="nospace">
+            <li><i class="fas fa-mobile-alt rgtspace-5"></i> +00 (123) 456 7890</li>
+            <li><i class="far fa-envelope rgtspace-5"></i> info@domain.com</li>
+          </ul>
+        </div>
+        <div class="fl_right">
+          <ul class="nospace">
+            <li><a href="{% url 'index' %}"><i class="fas fa-home"></i></a></li>
+            <li><a href="#" title="Help Centre"><i class="far fa-life-ring"></i></a></li>
+            <li><a href="#" title="Login"><i class="fas fa-sign-in-alt"></i></a></li>
+            <li><a href="#" title="Sign Up"><i class="fas fa-edit"></i></a></li>
+            <li id="searchform">
+              <div>
+                <form action="#" method="post">
+                  <fieldset>
+                    <legend>Quick Search:</legend>
+                    <input type="text" placeholder="Enter search term&hellip;">
+                    <button type="submit"><i class="fas fa-search"></i></button>
+                  </fieldset>
+                </form>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="bgded overlay" style="background-image:url('{% static 'images/demo/backgrounds/01.png' %}');">
+        <header id="header" class="hoc clear">
+          <div id="logo" class="fl_left">
+            <h1><a href="{% url 'index' %}">Spourmo</a></h1>
+          </div>
+          <nav id="mainav" class="fl_right">
+            <ul class="clear">
+              <li class="active"><a href="{% url 'index' %}">Home</a></li>
+              <li><a href="{% url 'apps.posts:posts' %}">Posts</a></li>
+              <li><a href="{% url 'apps.contacto:contacto' %}">Contacto</a></li>
+            </ul>
+          </nav>
+        </header>
+
+        {% block pageintro %}
+        {% endblock pageintro %}
+    </div>
+    
+    <div class="wrapper row3">
+      <main class="hoc container clear">
+        {% block contenido %}
+        {% endblock contenido %}
+      </main>
+    </div>
+
+    <div class="wrapper row4">
+      <footer id="footer" class="hoc clear">
+        <div class="group btmspace-50">
+          <div class="one_quarter first">
+            <h6 class="heading">Lorem proin volutpat</h6>
+            <ul class="faico clear">
+              <li><a class="faicon-facebook" href="#"><i class="fab fa-facebook"></i></a></li>
+              <li><a class="faicon-google-plus" href="#"><i class="fab fa-google-plus-g"></i></a></li>
+              <li><a class="faicon-linkedin" href="#"><i class="fab fa-linkedin"></i></a></li>
+              <li><a class="faicon-twitter" href="#"><i class="fab fa-twitter"></i></a></li>
+              <li><a class="faicon-vk" href="#"><i class="fab fa-vk"></i></a></li>
+            </ul>
+          </div>
+          <div class="one_quarter">
+            <h6 class="heading">Nascetur ridiculus mus</h6>
+          </div>
+          <div class="one_quarter">
+            <h6 class="heading">Vestibulum sed quam</h6>
+          </div>
+          <div class="one_quarter">
+            <h6 class="heading">Aenean diam euismod</h6>
+          </div>
+        </div>
+      </footer>
+    </div>
+    <a id="backtotop" href="#top"><i class="fas fa-chevron-up"></i></a>
+
+    <script src="{% static 'layout/scripts/jquery.min.js' %}"></script>
+    <script src="{% static 'layout/scripts/jquery.backtotop.js' %}"></script>
+    <script src="{% static 'layout/scripts/jquery.mobilemenu.js' %}"></script>
+</body>
+</html>
