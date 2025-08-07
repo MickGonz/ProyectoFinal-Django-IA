@@ -9,8 +9,9 @@ urlpatterns = [
     path('', index, name='index'),
     path('posts/', include('apps.posts.urls')),
     path('contacto/', include('apps.contacto.urls')), 
-    
+     path('usuario/', include('apps.usuario.urls')), 
 ]
+
 
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

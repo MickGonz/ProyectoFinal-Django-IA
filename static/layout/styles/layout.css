@@ -28,7 +28,13 @@ File: Layout CSS
 
 #topbar ul li{display:inline-block; margin-right:15px;}
 #topbar ul li:last-child{margin-right:0; padding-right:0; border-right:none;}
-#topbar i{line-height:normal;}
+#topbar i{line-height:normal; font-size:40px;} /* Tamaño del ícono ajustado */
+
+/* Estilo para el logo en la barra superior */
+#topbar .fl_left img {
+    max-height: 40px;
+    margin-top: -10px; /* Ajuste para alinear con los otros elementos */
+}
 
 /* Search Form */
 #topbar #searchform{position:relative; line-height:1; z-index:9999;}
@@ -47,8 +53,16 @@ File: Layout CSS
 --------------------------------------------------------------------------------------------------------------- */
 #ctdetails{padding:30px 0;}
 
-#ctdetails ul{}
-#ctdetails ul li{}
+#ctdetails ul.nospace {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+#ctdetails ul.nospace li {
+    text-align: center;
+}
+
 #ctdetails ul li div{position:relative; min-height:45px; padding:0 0 0 60px; line-height:1; word-wrap:break-word;}
 #ctdetails ul li div i{position:absolute; top:0; left:0; width:45px; height:45px; line-height:45px; font-size:16px; text-align:center; border-radius:50%;}
 #ctdetails ul li div span{display:block; padding:4px 0 0 0;}
@@ -59,7 +73,7 @@ File: Layout CSS
 /* Header
 --------------------------------------------------------------------------------------------------------------- */
 .padtop{padding:80px 0 0 0;}
- 
+
 #header{padding:0 30px;}
 
 #header #logo{margin:22px 0 0 0;}
@@ -227,7 +241,6 @@ nav ul, nav ol{margin:0; padding:0; list-style:none;}
 #mainav ul ul ul{left:180px; top:0;}
 #mainav li{display:inline-block; position:relative; margin:0 15px 0 0; padding:0;}
 #mainav li:last-child{margin-right:0;}
-#mainav li li{width:100%; margin:0;}
 #mainav li a{display:block; padding:30px 0;}
 #mainav li li a{border:solid; border-width:0 0 1px 0;}
 #mainav .drop{padding-left:15px;}
@@ -527,4 +540,24 @@ table a, #comments a{background-color:inherit;}
 
 	.font-x2{font-size:1.6rem;}
 	.font-x3{font-size:1.8rem;}
+}
+#ctdetails ul.nospace {
+	display: flex;
+	justify-content: space-around;
+	width: 100%;
+	margin-right: auto;
+	margin-left: auto;
+}
+
+#ctdetails ul.nospace li {
+	text-align: center;
+}
+
+#topbar .fl_right ul i {
+	font-size: 24px;
+}
+
+/* Para el tamaño del logo */
+#topbar img {
+	max-height: 40px;
 }
