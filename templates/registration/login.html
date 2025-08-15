@@ -1,13 +1,24 @@
 {% extends 'base.html' %}
-{% load static %}
-
-{% block contenido %}
-    <main class="hoc container clear">
-        <h2>Iniciar Sesión</h2>
-        <form method="post">
-            {% csrf_token %}
-            {{ form.as_p }}
-            <button type="submit" class="btn">Login</button>
+{% block content %}
+<div class="container w-25 border shadow-sm mx-auto mt-3">
+    <div class="row">
+      <h2>Iniciar sesión</h2>
+      {% if form.errors %}
+        <p style="color: red;">Usuario o contraseña incorrectos. Intenta nuevamente.</p>
+      {% endif %}
+        <form class="col s12 l8 p-2" method="post">
+          {% csrf_token %}
+          <div>
+            <label for="id_username">Usuario:</label>
+            {{ form.username }}
+          </div>
+          <div>
+            <label for="id_password">Contraseña:</label>
+            {{ form.password }}
+          </div>
+          <button type="submit">Entrar</button>
         </form>
-    </main>
-{% endblock contenido %}
+    </div>
+  <p><a href="#">¿Olvidaste tu contraseña?</a></p>
+  </div>
+{% endblock %}

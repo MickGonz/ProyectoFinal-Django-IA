@@ -7,3 +7,8 @@ def index(request):
         'latest_posts': latest_posts
     }
     return render(request, 'index.html', context)
+
+from django.shortcuts import render
+
+def acerca_de(request):
+    return render(request, 'acerca_de.html')

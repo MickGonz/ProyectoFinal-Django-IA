@@ -1,13 +1,43 @@
 {% extends 'base.html' %}
+{% load custom_tags %}
 
 {% block contenido %}
     <main class="hoc container clear">
         <h2>{{ post.titulo }}</h2>
         <p>{{ post.subtitulo }}</p>
         <p>Categoría: {{ post.categoria }}</p>
+        
+        {% if user.is_authenticated and user.is_superuser or user|has_group:'Colaborador' %}
+            <a href="{% url 'apps.posts:editar_post' pk=post.pk %}">Editar Post</a>
+            <a href="{% url 'apps.posts:eliminar_post' pk=post.pk %}">Eliminar Post</a>
+        {% endif %}
 
         <img src="{{ post.imagen.url }}" alt="Imagen del post">
 
         <p>{{ post.texto }}</p>
+
+        <section class="comments-section">
+            <h3>Comentarios ({{ post.comentarios.count }})</h3>
+            {% for comentario in comentarios %}
+                <div>
+                    <strong>{{ comentario.autor.username }}</strong> dice:
+                    <p>{{ comentario.contenido }}</p>
+                    <small>{{ comentario.fecha_creacion }}</small>
+                </div>
+                <hr>
+            {% empty %}
+                <p>No hay comentarios aún.</p>
+            {% endfor %}
+
+            {% if user.is_authenticated %}
+                <form method="post">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <button type="submit">Enviar comentario</button>
+                </form>
+            {% else %}
+                <p>Debes <a href="{% url 'apps.usuario:login' %}">iniciar sesión</a> para comentar.</p>
+            {% endif %}
+        </section>
     </main>
 {% endblock contenido %}

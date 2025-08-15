@@ -1,10 +1,23 @@
 from django.contrib import admin
-from .models import Categoria, Post
+from .models import Post, Comentario, Categoria
 
-# Clases para personalizar la vista en el admin
+# Clase de administración para el modelo Categoria
+@admin.register(Categoria)
+class CategoriaAdmin(admin.ModelAdmin):
+    # Esto le dice a Django que el campo 'slug' se debe rellenar automáticamente
+    # usando el contenido del campo 'nombre'.
+    prepopulated_fields = {'slug': ('nombre',)}
+
+# Clase de administración para el modelo Post (opcional, pero buena práctica)
+@admin.register(Post)
 class PostAdmin(admin.ModelAdmin):
-    list_display = ('id', 'titulo', 'subtitulo', 'fecha', 'activo', 'categoria', 'imagen', 'publicado')
-
-# Registra tus modelos aquí.
-admin.site.register(Categoria)
-admin.site.register(Post, PostAdmin)
+    list_display = ['titulo', 'publicado', 'categoria']
+    list_filter = ['publicado', 'categoria']
+    search_fields = ['titulo', 'subtitulo']
+    
+# Clase de administración para el modelo Comentario (opcional)
+@admin.register(Comentario)
+class ComentarioAdmin(admin.ModelAdmin):
+    list_display = ['autor', 'post', 'fecha_creacion', 'aprobado']
+    list_filter = ['aprobado', 'fecha_creacion']
+    search_fields = ['autor__username', 'contenido']

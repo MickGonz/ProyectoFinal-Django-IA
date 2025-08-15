@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block contenido %}
+    <main class="hoc container clear">
+        <h2>Registro de Usuario</h2>
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn">Registrar</button>
+        </form>
+    </main>
+{% endblock contenido %}
