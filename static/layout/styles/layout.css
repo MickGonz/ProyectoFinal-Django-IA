@@ -363,10 +363,10 @@ input:focus, textarea:focus, *:required:focus{border-color:#FF007F!important;}
 
 
 /* Rows */
-.row0, .row0 a{color:#000000; background-color:#00FFC6;}
-.row1{color:#000000; background-color:#f7e3e3;}
+.row0, .row0 a{color:#423a41; background-color:#16c59f;}
+.row1{color:#df07eb; background-color:#16c59f;}
 .row2{color:#474747; background-color:#000000;}
-.row3{color:#474747; background-color:#040c0e;}
+.row3{color:#474747; background-color:#0d1d21;}
 .row4{color:#A8A8A8;}
 .row5, .row5 a{color:#e125b2;}
 
@@ -385,12 +385,12 @@ input:focus, textarea:focus, *:required:focus{border-color:#FF007F!important;}
 
 
 /* Header */
-#header{color:#FFFFFF; background-color:#00FFC6;}
+#header{color:#FFFFFF; background-color:#ce01d9;}
 #header #logo a{color:inherit;}
 
 
 /* Content */
-#introblocks figure figcaption > a{color:#FFFFFF; background-color:#00FFC6;}
+#introblocks figure figcaption > a{color:#FFFFFF; background-color:#000000;}
 
 .points{}
 .points li a i{color:inherit; background-color:#FFFFFF;}
@@ -574,5 +574,46 @@ table a, #comments a{background-color:inherit;}
 }
 
 .bgded {
-    background-image: url('../images/demo/backgrounds/01.png'); /* Reemplaza '01.png' por el nombre de tu archivo */
+    background-image: url('../images/demo/backgrounds/01.jpg');
+    background-size: 120%; /* Cambia este valor para ajustar el tamaño de la imagen */
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+/* Estilo para las imágenes de los posts recientes */
+#latest article figure img {
+    width: 100%;
+    max-width: 200px; /* Este es el tamaño que puedes ajustar */
+    height: auto; /* Mantiene la proporción */
+}
+
+/* Estilo para las imágenes en la página de post individual */
+.post-individual-imagen {
+    max-width: 100%; /* La imagen no excederá el ancho de su contenedor */
+    height: auto; /* Mantiene la proporción */
+    display: block; /* Elimina el espacio extra debajo de la imagen */
+    margin-bottom: 40px; /* Agrega un espacio debajo de la imagen */
+}
+
+/* Centra el contenido de los posts individuales */
+.post-individual-container {
+    max-width: 800px; /* Define el ancho máximo del contenido */
+    margin: 0 auto; /* Centra el contenedor horizontalmente */
+}
+
+/* Estilo para el texto del post individual */
+.post-texto {
+    font-size: 1.5rem; /* Tamaño de la fuente, puedes ajustarlo */
+    line-height: 1.6; /* Espaciado entre líneas para mejor lectura */
+}
+
+/* Estilos para el título y subtítulo del post individual */
+.post-titulo {
+    font-size: 4.0rem; /* Tamaño de la fuente para el título */
+    line-height: 1.2;
+}
+
+.post-subtitulo {
+    font-size: 1.3rem; /* Tamaño de la fuente para el subtítulo */
+    line-height: 1.5;
 }

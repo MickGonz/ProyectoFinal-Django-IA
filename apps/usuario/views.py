@@ -7,8 +7,8 @@ from django.contrib.auth import login, authenticate
 from .models import Usuario
 from .forms import RegistroForm
 from django.urls import reverse_lazy
+from apps.posts.models import Post # Agrega esta importación
 
-# Create your views here.
 class AjaxLoginView(View):
     def post(self, request, *args, **kwargs):
         if request.headers.get("x-requested-with") != "XMLHttpRequest":
@@ -33,9 +33,8 @@ class CustomLoginView(LoginView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-
         context["error"] = 'Credenciales inválidas'
-
+        context['ultimos_posts'] = Post.objects.all().order_by('-publicado')[:3]
         return context
 
     def post(self, request, *args, **kwargs):
@@ -50,3 +49,8 @@ class RegistroView(CreateView):
     template_name = 'registration/register.html'
     form_class = RegistroForm
     success_url = reverse_lazy('login')
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['ultimos_posts'] = Post.objects.all().order_by('-publicado')[:3]
+        return context

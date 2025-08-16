@@ -2,27 +2,36 @@
 {% load custom_tags %}
 
 {% block contenido %}
-    <main class="hoc container clear">
-        <h2>{{ post.titulo }}</h2>
-        <p>{{ post.subtitulo }}</p>
-        <p>Categoría: {{ post.categoria }}</p>
-        
+    <main class="hoc container clear post-individual-container">
+
+        <h2 class="centrado post-titulo">{{ post.titulo }}</h2>
+<p class="centrado post-subtitulo">{{ post.subtitulo }}</p>
+
         {% if user.is_authenticated and user.is_superuser or user|has_group:'Colaborador' %}
             <a href="{% url 'apps.posts:editar_post' pk=post.pk %}">Editar Post</a>
             <a href="{% url 'apps.posts:eliminar_post' pk=post.pk %}">Eliminar Post</a>
         {% endif %}
 
-        <img src="{{ post.imagen.url }}" alt="Imagen del post">
+        <div class="centrado">
+            <img src="{{ post.imagen.url }}" alt="Imagen del post" class="post-individual-imagen">
+        </div>
 
-        <p>{{ post.texto }}</p>
+        <p class="centrado post-texto">{{ post.texto }}</p>
 
         <section class="comments-section">
             <h3>Comentarios ({{ post.comentarios.count }})</h3>
             {% for comentario in comentarios %}
-                <div>
+                <div class="comment-item">
                     <strong>{{ comentario.autor.username }}</strong> dice:
                     <p>{{ comentario.contenido }}</p>
                     <small>{{ comentario.fecha_creacion }}</small>
+                    
+                    {% if user.is_authenticated and user == comentario.autor or user|has_group:'Colaborador' %}
+                        <div class="comment-actions">
+                            <a href="{% url 'apps.posts:editar_comentario' pk=comentario.pk %}">Editar</a>
+                            <a href="{% url 'apps.posts:eliminar_comentario' pk=comentario.pk %}">Eliminar</a>
+                        </div>
+                    {% endif %}
                 </div>
                 <hr>
             {% empty %}

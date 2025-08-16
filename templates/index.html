@@ -3,6 +3,18 @@
 {% load custom_tags %}
 
 {% block contenido %}
+
+<div class="bgded overlay" style="background-image:url('{% static 'images/demo/backgrounds/01.jpg' %}');">
+    <div id="pageintro" class="hoc clear">
+        <article>
+            <h3 class="heading">¡Hola! Somos CODE NINJA</h3>
+            <p>Donde la tecnología y la información se encuentran para ofrecerte lo último y más relevante del mundo digital.</p>
+            <footer>
+                <a class="btn" href="{% url 'apps.posts:posts' %}">Descubre más</a>
+            </footer>
+        </article>
+    </div>
+</div>
 <div class="wrapper row1">
     <section id="ctdetails" class="hoc clear">
         <h1 class="heading" style="text-align: center;">BIENVENIDOS A CODE NINJA</h1>

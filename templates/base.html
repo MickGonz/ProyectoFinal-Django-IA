@@ -1,123 +1,165 @@
 <!DOCTYPE html>
-{% load static %}
-{% load custom_tags %}
-<html lang="es-ar">
+<html lang="">
 <head>
-    <title>{% block title %}CODENINJA{% endblock title %}</title>
+    <title>CODE NINJA</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    {% load static %}
+    {% load custom_tags %}
     <link href="{% static 'layout/styles/layout.css' %}" rel="stylesheet" type="text/css" media="all">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link href="{% static 'layout/styles/fontawesome-free/css/all.css' %}" rel="stylesheet" type="text/css" media="all">
+
 </head>
 <body id="top">
-
-    <div class="wrapper row0">
-      <div id="topbar" class="hoc clear">
+<div class="wrapper row0">
+    <div id="topbar" class="hoc clear">
         <div class="fl_left">
-          <a href="{% url 'index' %}">
-            <img src="{% static 'images/Black White Minimalist Modern Aesthetic Initials Font Logo (2).png' %}" alt="Spourmo Logo" style="max-height: 60px;">
-          </a>
+            <img src="{% static 'Black White Minimalist Modern Aesthetic Initials Font Logo (2).png' %}" alt="Logo"
+                 style="max-height: 80px; margin-top: -10px;">
         </div>
         <div class="fl_right">
-          <ul class="nospace">
-            {% if user.is_authenticated %}
-              {% if user.is_superuser or user|has_group:'Colaborador' %}
-                <li><a href="{% url 'apps.posts:crear_post' %}">Crear Post</a></li>
-              {% endif %}
-              <li><a href="{% url 'apps.usuario:logout' %}">Logout</a></li>
-            {% else %}
-              <li><a href="{% url 'apps.usuario:login' %}" title="Login"><i class="fas fa-sign-in-alt"></i></a></li>
-              <li><a href="{% url 'apps.usuario:register' %}" title="Sign Up"><i class="fas fa-edit"></i></a></li>
-            {% endif %}
-            <li id="searchform">
-              <div>
-                <form action="#" method="post">
-                  <fieldset>
-                    <legend>Quick Search:</legend>
-                    <input type="text" placeholder="Enter search term&hellip;">
-                    <button type="submit"><i class="fas fa-search"></i></button>
-                  </fieldset>
-                </form>
-              </div>
-            </li>
-          </ul>
+            <ul class="nospace">
+                {% if user.is_authenticated %}
+                    <li><a href="{% url 'apps.usuario:logout' %}">LOGOUT</a></li>
+                    <li><a href="{% url 'apps.posts:crear_post' %}">CREAR POST</a></li>
+                    <li>
+                        <div id="searchform">
+                             <form action="{% url 'apps.posts:busqueda' %}" method="get">
+                                <fieldset>
+                                    <legend>Quick Search:</legend>
+                                    <input type="text" name="q" placeholder="Enter keyword(s) &hellip;">
+                                    <button type="submit" title="Search"><i class="fas fa-search"></i></button>
+                                </fieldset>
+                            </form>
+                        </div>
+                    </li>
+                {% else %}
+                    <li><a href="{% url 'apps.usuario:login' %}">LOGIN</a></li>
+                    <li><a href="{% url 'apps.usuario:registrar' %}">REGISTRO</a></li>
+                    <li>
+                        <div id="searchform">
+                            <form action="{% url 'apps.posts:busqueda' %}" method="get">
+                                <fieldset>
+                                    <legend>Quick Search:</legend>
+                                    <input type="text" name="q" placeholder="Enter keyword(s) &hellip;">
+                                    <button type="submit" title="Search"><i class="fas fa-search"></i></button>
+                                </fieldset>
+                            </form>
+                        </div>
+                    </li>
+                {% endif %}
+            </ul>
         </div>
-      </div>
     </div>
-    
-    <div class="wrapper row1">
-      <section id="ctdetails" class="hoc clear">
-        <ul class="nospace clear">
-          <li class="one_quarter first">
-            <div class="block clear" style="text-align: center;"><a href="#"><i class="fas fa-phone"></i></a> <span><strong>Contáctanos:</strong> +54 (11) 0000000</span></div>
-          </li>
-          <li class="one_quarter">
-            <div class="block clear" style="text-align: center;"><a href="{% url 'apps.contacto:contacto' %}"><i class="fas fa-envelope"></i></a> <span><strong>Envíanos un mail:</strong> support@domain.com</span></div>
-          </li>
-          <li class="one_quarter">
-            <div class="block clear" style="text-align: center;"><a href="{% url 'acerca_de' %}"><i class="fas fa-clock"></i></a> <span><strong> Acerca de Nosotros </strong> conócenos</span></div>
-          </li>
-          <li class="one_quarter">
-            <div class="block clear" style="text-align: center;"><a href="#"><i class="fas fa-map-marker-alt"></i></a> <span><strong>Visítanos:</strong> <a href="#">Calle Falsa 123</a></span></div>
-          </li>
-        </ul>
-      </section>
-    </div>
-
-    <div class="bgded overlay padtop" style="background-image:url('{% static 'images/demo/backgrounds/01.png' %}');">
-        <header id="header" class="hoc clear">
-          <div id="logo" class="fl_left">
-            <h1><a href="{% url 'index' %}">CODENINJA</a></h1>
-          </div>
-          <nav id="mainav" class="fl_right">
+</div>
+<div class="wrapper row2 bgded" style="background-image:url('{% static 'images/demo/backgrounds/header_nuevo.png' %}')">
+    <div class="hoc container clear">
+        </div>
+</div>
+<div class="wrapper row1">
+    <header id="header" class="hoc clear">
+        <div id="logo" class="fl_left">
+            <h1 class="logoname"><a href="{% url 'index' %}"><span>Cod</span>eNin<span>ja</span></a></h1>
+        </div>
+        <nav id="mainav" class="fl_right">
             <ul class="clear">
-              <li class="active"><a href="{% url 'index' %}">Home</a></li>
-              <li><a href="{% url 'apps.posts:posts' %}">Posts</a></li>
-              <li><a href="{% url 'apps.contacto:contacto' %}">Contacto</a></li>
+                <li class="active"><a href="{% url 'index' %}">Inicio</a></li>
+                <li><a class="drop" href="#">Categorías</a>
+                    <ul>
+                        <li><a href="{% url 'apps.posts:posts' %}">Todas las categorías</a></li>
+                        {% for categoria in categorias %}
+                            <li><a href="{% url 'apps.posts:posts' %}?categoria={{ categoria.slug }}">{{ categoria.nombre }}</a></li>
+                        {% endfor %}
+                    </ul>
+                </li>
+                <li><a href="{% url 'acerca_de' %}">Acerca de nosotros</a></li>
+                <li><a href="{% url 'apps.contacto:contacto' %}">Contacto</a></li>
             </ul>
-          </nav>
-        </header>
-
-        {% block pageintro %}
-        {% endblock pageintro %}
-    </div>
-    
-    <div class="wrapper row3">
-      <main class="hoc container clear">
-        {% block contenido %}
-        {% endblock contenido %}
-      </main>
-    </div>
-
-    <div class="wrapper row4">
-      <footer id="footer" class="hoc clear">
-        <div class="group btmspace-50">
-          <div class="one_quarter first">
-            <h6 class="heading">Lorem proin volutpat</h6>
-            <ul class="faico clear">
-              <li><a class="faicon-facebook" href="#"><i class="fab fa-facebook"></i></a></li>
-              <li><a class="faicon-google-plus" href="#"><i class="fab fa-google-plus-g"></i></a></li>
-              <li><a class="faicon-linkedin" href="#"><i class="fab fa-linkedin"></i></a></li>
-              <li><a class="faicon-twitter" href="#"><i class="fab fa-twitter"></i></a></li>
-              <li><a class="faicon-vk" href="#"><i class="fab fa-vk"></i></a></li>
-            </ul>
-          </div>
-          <div class="one_quarter">
-            <h6 class="heading">Nascetur ridiculus mus</h6>
-          </div>
-          <div class="one_quarter">
-            <h6 class="heading">Vestibulum sed quam</h6>
-          </div>
-          <div class="one_quarter">
-            <h6 class="heading">Aenean diam euismod</h6>
-          </div>
+        </nav>
+    </header>
+</div>
+{% block contenido %}
+{% endblock contenido %}
+<div class="wrapper row4">
+    <footer id="footer" class="hoc clear">
+        <div class="one_quarter first">
+            <h6 class="heading">Nosotros</h6>
+            <p>
+                Somos un blog de programación dedicado a la IA. Compartimos noticias, tutoriales y recursos para que
+                aprendas y te mantengas actualizado.
+            </p>
         </div>
-      </footer>
+        <div class="one_quarter">
+            <h6 class="heading">Contacto</h6>
+            <ul class="nospace linklist">
+                <li>
+                    <i class="fas fa-map-marker-alt"></i>
+                    <p>
+                        <span>
+                            Dirección:
+                            <a href="#">Av. 9 de Julio 123</a>
+                        </span>
+                        <span>
+                            Ciudad:
+                            <a href="#">Resistencia, Chaco</a>
+                        </span>
+                    </p>
+                </li>
+                <li>
+                    <i class="fas fa-phone-alt"></i>
+                    <p>
+                        <span>Teléfono:
+                            <a href="#">+54 362 4123456</a>
+                        </span>
+                    </p>
+                </li>
+                <li>
+                    <i class="fas fa-envelope"></i>
+                    <p>
+                        <span>Email:
+                            <a href="#">info@codeninja.com</a>
+                        </span>
+                    </p>
+                </li>
+            </ul>
+        </div>
+        <div class="one_quarter">
+            <h6 class="heading">Recientes</h6>
+            <ul class="nospace linklist">
+                <li>
+                    <a href="#">
+                        <figure>
+                            <img src="{% static 'images/demo/100x100.png' %}" alt="">
+                        </figure>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div class="one_quarter">
+    <h6 class="heading">Envíanos un mensaje</h6>
+    <p>
+        Si tienes alguna pregunta o sugerencia, no dudes en escribirnos.
+    </p>
+    <form action="#" method="post">
+        {% csrf_token %}
+        <textarea class="btmspace-15" rows="5" placeholder="Escribe tu mensaje..." required=""></textarea>
+        <button class="btn" type="submit" title="Submit">Enviar Mensaje</button>
+    </form>
+</div>
+    </footer>
+</div>
+<div class="wrapper row5">
+    <div id="copyright" class="hoc clear">
+        <p class="fl_left">
+            Copyright © 2024 - Todos los derechos reservados -
+            <a href="#">Code Ninja</a>
+        </p>
+        <p class="fl_right">Template by <a target="_blank" href="https://www.os-templates.com/" title="Free Website Templates">OS Templates</a></p>
     </div>
-    <a id="backtotop" href="#top"><i class="fas fa-chevron-up"></i></a>
-
-    <script src="{% static 'layout/scripts/jquery.min.js' %}"></script>
-    <script src="{% static 'layout/scripts/jquery.backtotop.js' %}"></script>
-    <script src="{% static 'layout/scripts/jquery.mobilemenu.js' %}"></script>
+</div>
+<a id="backtotop" href="#top"><i class="fas fa-angle-up"></i></a>
+<script src="{% static 'layout/scripts/jquery.min.js' %}"></script>
+<script src="{% static 'layout/scripts/jquery.backtotop.js' %}"></script>
+<script src="{% static 'layout/scripts/jquery.mobilemenu.js' %}"></script>
 </body>
 </html>

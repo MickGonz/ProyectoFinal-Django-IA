@@ -8,7 +8,5 @@ def index(request):
     }
     return render(request, 'index.html', context)
 
-from django.shortcuts import render
-
 def acerca_de(request):
     return render(request, 'acerca_de.html')

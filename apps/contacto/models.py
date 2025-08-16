@@ -1,12 +1,10 @@
 from django.db import models
-from django.utils import timezone
 
 class Contacto(models.Model):
-    nombre_apellido = models.CharField(max_length=120)
-    email = models.EmailField(max_length=50)
-    asunto = models.CharField(max_length=50)
+    nombre = models.CharField(max_length=100)
+    correo = models.EmailField()
     mensaje = models.TextField()
-    fecha_creacion = models.DateTimeField(default=timezone.now)
+    fecha = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return self.nombre_apellido
+        return self.nombre
